@@ -1,10 +1,11 @@
-📰 News Scraper with NewsAPI
+***📰 News Scraper with NewsAPI***
 
 A Python script that fetches news articles from multiple sources and saves article links to a text file. ✨
 
 🔹 What It Does
 Fetches news articles on a given topic or keyword 🗞️
 Pulls articles from multiple sources (BBC, AP News, Reuters) 🌐
+
 Retrieves both all articles matching the topic and top headlines 🏆
 Saves article URLs to newslink.txt 💾
 
