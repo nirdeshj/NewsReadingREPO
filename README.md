@@ -1,4 +1,4 @@
-**# 📰News Scraper with NewsAPI**
+**📰# News Scraper with NewsAPI**
 
 A Python script that fetches news articles from multiple sources and saves article links to a text file. ✨
 
