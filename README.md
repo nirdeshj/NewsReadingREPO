@@ -7,7 +7,7 @@ Fetches news articles on a given topic or keyword 🗞️
 Pulls articles from multiple sources (BBC, AP News, Reuters) 🌐
 
 Retrieves both all articles matching the topic and top headlines 🏆
-Saves article URLs to newslink.txt 💾
+Saves article URLs💾
 
 ## How It Works
 Uses the NewsAPI /v2/everything endpoint to fetch articles based on a keyword/topic 🔍
