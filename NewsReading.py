@@ -1,39 +1,37 @@
 import requests 
 from datetime import datetime
+import userinput
 
 TODAY = datetime.now().strftime("%Y-%m-%d")
-MAX_NO_OF_ARTICLES = 50
-TOPICS = 'United States'
-DOMAINS = 'bbc.co.uk, apnews.com, reuters.com'
+
+MAX_NO_OF_ARTICLES = 4
+TOPICS = userinput.main()
+API_KEY = '5b2fcee5c1f5447c8e5da0f089704a3b'
+
 def getnews():
-    payload={'q': TOPICS, 
-             'apiKey': '5b2fcee5c1f5447c8e5da0f089704a3b', 
-             'pageSize': MAX_NO_OF_ARTICLES, 
-             'sources': 'bbc-news, associated-press, reuters',
-             'domains' : DOMAINS
-             }
-    payload_headlines = {
-        'apiKey': '5b2fcee5c1f5447c8e5da0f089704a3b',
-        'country': 'us, gb'
+    for topic in TOPICS:
+        payload={'q': topic, 
+                 'apiKey': API_KEY, 
+                 'pageSize': MAX_NO_OF_ARTICLES
+                 }
+        r = requests.get('https://newsapi.org/v2/everything', params=payload)
+        processnews(r, topic)
+        
 
-    }
-    r = requests.get('https://newsapi.org/v2/everything', params=payload)
-    headlines = requests.get('https://newsapi.org/v2/top-headlines', params = payload_headlines)
-    processnews(r)
-
-def processnews(r):
+def processnews(r, t):
     result_news_dict = r.json()
     noOfArticles = len(result_news_dict)
-    news_link = []
-    for article in range(0, (noOfArticles)):
-        print(result_news_dict['articles'][article]['title'], result_news_dict['articles'][article]['url'])
-        news_link.append(result_news_dict['articles'][article]['url'])
-    news_link = [(x+"\n") for x in news_link]
+    print(f"\n{t}:")
+    try: 
+        for i in range(0, noOfArticles):
+            print(f"{i+1}. {result_news_dict['articles'][i]['title']}")
+    except IndexError:
+        print('No articles were found')
+
 
     
-    with open('newslink.txt', 'w') as f:
-        for i in range(0, (noOfArticles)):
-            f.write(news_link[i])
+            
+            
 def main():
     getnews()
 
