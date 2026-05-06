@@ -37,28 +37,30 @@ def display_news(adata, num):
             st.markdown(f"## {topic.title()}")
 
             for article in adata[topic][:num]:
-                img = article.get('urlToImage', None)
-                title = article.get("title", 'No title available')
-                url =  article.get('url', None)
-                src = article.get('source', {}).get('name', 'Couldn\'t gather source')
-                whenpublished = article.get('publishedAt', None)
-                dateonly = whenpublished.split('T')[0] if whenpublished else 'Unknown Date'
-            
-                if img:
-                    st.image(img, use_container_width=True)
-                else:
-                    st.caption("No image available")
-                st.markdown(f"##### {title}")
-                st.caption(f"Source: {src}")
-                if whenpublished:
-                    st.caption(f"Dated: {dateonly}", text_alignment = 'right')
+                    img = article.get('urlToImage', None)
+                    title = article.get("title", 'No title available')
+                    url =  article.get('url', None)
+                    src = article.get('source', {}).get('name', 'Couldn\'t gather source')
+                    whenpublished = article.get('publishedAt', None)
+                    dateonly = whenpublished.split('T')[0] if whenpublished else 'Unknown Date'
+                
+                    if img:
+                        st.image(img, use_container_width=True)
+                    else:
+                        st.caption("No image available")
+                    st.markdown(f"##### {title}")
+                    st.caption(f"Source: {src}")
+                    if whenpublished:
+                        st.caption(f"Dated: {dateonly}", text_alignment = 'right')
+                    if url: 
+                        st.link_button("Read More", url)
 
-                if url: 
-                    st.link_button("Read More", url)
-                st.write('\n\n')
+                    st.divider()    
+                    st.write('\n\n')
             
             if len(adata)>2:
-                st.divider()
+                st.markdown("<hr style='border:3px solid white;'>", unsafe_allow_html=True)
+                
 
     
 def main():
