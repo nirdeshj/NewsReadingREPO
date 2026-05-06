@@ -11,8 +11,8 @@ def fetch_news(topiclist):
     return mainread.main(topiclist)
 
 def app_ui():
-    st.set_page_config(page_title = 'TOP NEWS', page_icon="🧊", layout = 'centered')
-    st.title('Today\'s news', text_alignment = 'center')
+    st.set_page_config(page_title = 'TOP NEWS', page_icon="📰", layout = 'centered')
+    st.title('🌍 Get Your News 🌏', text_alignment = 'center')
     print('\n')
     user_topic = st.text_input("", placeholder="Enter topics separated by comma (eg: technology, liverpool fc, politics)")
     article_data = {}
